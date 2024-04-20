@@ -1,0 +1,30 @@
+.panel-page .panel-page-header button.session_button {
+    width: auto;
+    padding: 0 10px;
+    margin: 0 0 0 auto;
+    white-space: nowrap;
+    /* color: var(--color1-txt); */
+    color: var(--c6-txt);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.panel-page .panel-page-header button.session_button:hover {
+    text-decoration: underline;
+    background: transparent;
+}
+
+/*header -> in close*/
+
+.panel-page .panel-page-state.close ~ .panel-page-header span {
+    width: 50px;
+}
+
+/* in movil */
+
+@media (max-width: 600px) {
+    .panel-page .panel-page-state.close ~ .panel-page-header span {
+        width: 0;
+        padding: 0;
+    }
+}

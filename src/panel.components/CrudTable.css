@@ -1,0 +1,120 @@
+.panel-crudtable-component {
+    --margin: 0;
+    --padding: 10px;
+    --height: auto;
+    --opacity: 1;
+    --overflow: visible;
+
+    margin: 0;
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+
+    /* background: rgba(0, 0, 0, 0.1); */
+    background: var(--c3-bg);
+    border-top: solid 3px var(--c6-bg);
+    border-radius: 3px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+.panel-crudtable-component.open {
+    margin: var(--margin);
+    padding: var(--padding);
+    height: var(--height);
+    opacity: var(--opacity);
+    overflow: var(--overflow);
+}
+
+/*table*/
+.panel-crudtable-component .ideatable {
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 300px);
+    overflow: auto;
+}
+
+.panel-crudtable-component .ideatable table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.panel-crudtable-component .ideatable table thead tr th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #ffffff;
+    color: #000000;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+    --radius: 4px;
+}
+
+.panel-crudtable-component .ideatable table thead tr th:first-child {
+    border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.panel-crudtable-component .ideatable table thead tr th:last-child {
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.panel-crudtable-component .ideatable table tr {
+    height: 50px;
+}
+
+.panel-crudtable-component .ideatable table tbody tr:nth-child(2n) {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.panel-crudtable-component .ideatable table tbody tr:hover:not(.skeleton) {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.panel-crudtable-component .ideatable table tbody tr:hover span.td-span {
+    color: var(--info);
+}
+
+.panel-crudtable-component .ideatable table tbody tr img.td-photo {
+    width: 40px;
+    height: 40px;
+    max-height: 40px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 3px;
+}
+
+.panel-crudtable-component .ideatable table tbody tr img.td-photo.photo-product {
+    object-fit: contain;
+}
+
+.panel-crudtable-component .ideatable table tbody tr td {
+    color: var(--color3-txt);
+}
+
+.panel-crudtable-component .ideatable table tbody tr td .ideabutton.disabled:hover:before {
+    width: 0;
+}
+
+/*BUtton table*/
+.panel-crudtable-component .ideatable table tr th:last-child,
+.panel-crudtable-component .ideatable table tr td:last-child {
+    width: 145px;
+}
+
+.panel-crudtable-component .buttons-flex {
+    display: flex;
+    gap: 3px;
+}
+
+/* movil */
+
+@media (max-width: 900px) {
+    .panel-crudtable-component {
+        --margin: 20px 10px 0 10px;
+    }
+}

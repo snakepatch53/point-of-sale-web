@@ -1,0 +1,89 @@
+/*modalconfirm*/
+
+.panel-crudconfirm-component {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+}
+
+.panel-crudconfirm-component.open {
+    height: 100%;
+    opacity: 1;
+    transition: all 0.1s ease !important;
+}
+
+.panel-crudconfirm-component .ideaconfirm {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    max-width: 500px;
+    height: auto;
+    max-height: 150px;
+    background: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+    transition: all 0.1s ease !important;
+}
+
+.panel-crudconfirm-component .ideaconfirm .head {
+    padding: 10px 30px;
+    display: flex;
+    position: relative;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+.panel-crudconfirm-component .ideaconfirm .head p.msg {
+    font-size: 17px;
+    letter-spacing: 0.5px;
+}
+
+.panel-crudconfirm-component .ideaconfirm .head button {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    padding: 4px;
+    background: transparent;
+}
+
+.panel-crudconfirm-component .ideaconfirm .head button img {
+    width: 100%;
+    height: 100%;
+    filter: opacity(0.4);
+}
+
+.panel-crudconfirm-component .ideaconfirm .head button:hover img {
+    filter: opacity(1);
+}
+
+.panel-crudconfirm-component .ideaconfirm .foot {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 30px 10px 0;
+}
+
+.panel-crudconfirm-component .ideaconfirm .foot button {
+    margin: 0 0 0 5px;
+    justify-content: center;
+}
+
+.panel-crudconfirm-component .ideaconfirm .foot button span {
+    margin: 0 0 0 3px;
+}

@@ -1,0 +1,39 @@
+/*tool -> in close*/
+.panel-page .panel-page-state.close ~ .panel-page-content .panel-sidebar-component {
+    width: 50px;
+    min-width: 50px;
+}
+
+.panel-page .panel-page-state.close ~ .panel-page-content .panel-sidebar-component a.option span {
+    width: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+.panel-page .panel-page-state.close ~ .panel-page-content .panel-sidebar-component a.option.active {
+    padding: 0 5px;
+}
+
+/* in movil */
+
+@media (max-width: 600px) {
+    .panel-page-content .panel-sidebar-component {
+        position: fixed;
+        z-index: 500;
+        left: 0;
+    }
+
+    .panel-page-state.close ~ .panel-page-content .panel-sidebar-component {
+        left: -100%;
+    }
+
+    .panel-page-state.close ~ .panel-page-content .panel-sidebar-component img.user_img {
+        width: 0px;
+        height: 0px;
+    }
+
+    .panel-page-state.close ~ .panel-page-content .panel-sidebar-component a.option span {
+        width: 0;
+        padding: 0;
+    }
+}
