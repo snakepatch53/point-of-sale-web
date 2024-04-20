@@ -1,7 +1,7 @@
 import "./CrudConfirm.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "./Button";
+import Button from "../Button";
 import { faCircleXmark, faClose, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function CrudConfirm({ isOpen, text, onClickDelete, onClickCancel }) {

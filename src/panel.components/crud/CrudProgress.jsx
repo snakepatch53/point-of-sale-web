@@ -1,5 +1,5 @@
-import Loading from "../components/Loading";
-import { cls } from "../lib/utils";
+import Loading from "../../components/Loading";
+import { cls } from "../../lib/utils";
 
 export default function CrudProgress({ isOpen }) {
     return (

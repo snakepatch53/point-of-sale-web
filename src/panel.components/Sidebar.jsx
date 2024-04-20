@@ -60,7 +60,7 @@ function Option({ name, icon, to }) {
         // }
         <Link
             className={cls(
-                "group option flex items-center gap-1 w-full h-[30px] min-h-[30px] my-[5px] mx-0 py-5 px-2 text-[--c4-txt] text-base rounded-sm transiton hover:bg-black/20",
+                "group option flex items-center gap-1 w-full h-[30px] min-h-[30px] my-[1px] mx-0 py-5 px-2 text-[--c4-txt] text-base rounded-sm transiton hover:bg-black/20",
                 {
                     "bg-black/20": isActive,
                 }

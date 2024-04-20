@@ -44,6 +44,8 @@ export function SessionProvider({ children }) {
             JSON.stringify({
                 id: 1,
                 token: "123",
+                name: "Harold Hernández",
+                role: "Administrador",
             })
         );
 
@@ -59,8 +61,8 @@ export function SessionProvider({ children }) {
     const checkSession = async ({ _session }) => {
         if (!_session) return;
         if (!_session?.token) return;
-        const response = await existSession();
-        if (!response?.success) return false;
+        // const response = await existSession();
+        // if (!response?.success) return false;
         return true;
     };
 

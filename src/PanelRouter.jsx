@@ -4,9 +4,9 @@ import { Route, Routes } from "react-router-dom";
 import Header from "./panel.components/Header";
 import { Suspense, lazy, useContext, useState } from "react";
 import Sidebar from "./panel.components/Sidebar";
-import CrudProgress from "./panel.components/CrudProgress";
 import { SessionContext } from "./contexts/session";
 import Loading from "./components/Loading";
+import CrudProgress from "./panel.components/crud/CrudProgress";
 
 const Home = lazy(() => import("./panel.pages/Home"));
 const Profile = lazy(() => import("./panel.pages/Profile"));
@@ -32,6 +32,7 @@ export default function PanelRouter() {
                         <Suspense fallback={<Loading />}>
                             <Routes>
                                 <Route path="/" element={<Home />} />
+                                <Route path="/home" element={<Home />} />
                                 <Route path="/profile" element={<Profile />} />
                             </Routes>
                         </Suspense>
