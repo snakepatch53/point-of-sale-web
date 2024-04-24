@@ -15,19 +15,19 @@ const Profile = lazy(() => import("./panel.pages/Profile"));
 export default function PanelRouter() {
     const { progress } = useContext(SessionContext);
 
-    const [showSidebar, setShowSidebar] = useState("open");
+    const [showSidebar, setShowSidebar] = useState(true);
     const handleClickShowSidebar = () => {
-        setShowSidebar(showSidebar == "open" ? "close" : "open");
+        setShowSidebar(showSidebar ? false : true);
     };
 
     return (
         <>
             <div className="panel-page">
-                <div className={"panel-page-state " + showSidebar}></div>
+                <div className={"panel-page-state " + (!showSidebar ? "close" : "")}></div>
                 <Header onClickButtonBars={handleClickShowSidebar} />
 
                 <div className="panel-page-content">
-                    <Sidebar />
+                    <Sidebar isOpen={showSidebar} />
                     <div className="panel-page-page scroll-style relative" id="main-content">
                         <Suspense fallback={<Loading />}>
                             <Routes>

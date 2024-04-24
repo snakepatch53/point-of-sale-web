@@ -10,12 +10,7 @@ export default function Header({ onClickButtonBars }) {
     const { info } = useContext(InfoContext);
     return (
         <>
-            <div
-                className="panel-page-header fixed top-0 left-0 flex items-center w-full h-[50px] bg-[--c6-bg] z-50"
-                style={{
-                    boxShadow: "0 3px 6px 2px rgba(0, 0, 0, 0.2)",
-                }}
-            >
+            <div className="panel-page-header fixed top-0 left-0 flex items-center w-full h-[50px] bg-black/20 z-50">
                 <span
                     className="hidden sm:block w-[200px] max-w-full h-full px-[10px] text-[16px] tracking-[0.7px] text-[--c5-txt] whitespace-nowrap text-ellipsis overflow-hidden leading-[3.1] bg-black/20 border border-r border-black/20 text-center"
                     style={{

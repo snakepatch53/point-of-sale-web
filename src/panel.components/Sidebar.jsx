@@ -8,17 +8,33 @@ import { SessionContext } from "../contexts/session";
 import { cls } from "../lib/utils";
 import { InfoContext } from "../contexts/info";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen }) {
     const { session } = useContext(SessionContext);
     const { info } = useContext(InfoContext);
     return (
-        <PanelSidebarComponent className="relative z-10 panel-sidebar-component">
-            <img
-                src={info.logo_url}
-                alt={"Foto del usuario " + session.name}
-                className="bg-[var(--c3-bg)] block w-full max-w-[150px] h-auto aspect-video my-[10px] mx-0 rounded object-contain object-center p-2"
-            />
+        <PanelSidebarComponent className="panel-sidebar-component  relative z-10 flex flex-col items-center w-[200px] min-w-[200px] h-full p-[10px] border-r overflow-y-auto overflow-x-hidden bg-black/20 ">
+            {isOpen && (
+                <img
+                    src={info.logo_url}
+                    alt={"Foto del usuario " + session.name}
+                    className="bg-[var(--c3-bg)] block w-full max-w-[150px] h-auto aspect-video my-[10px] mx-0 rounded object-contain object-center p-2"
+                />
+            )}
+            {!isOpen && (
+                <motion.div
+                    initial={{ opacity: 0, maxHeight: 0, maxWidth: 0 }}
+                    animate={{ opacity: 1, maxHeight: 150, maxWidth: 150 }}
+                    transition={{ duration: 0.1, delay: 0.1 }}
+                >
+                    <img
+                        src={info.icon_url}
+                        alt={"Foto del usuario " + session.name}
+                        className="block w-full max-w-[150px] h-auto aspect-square my-[10px] mx-0 rounded object-contain object-center"
+                    />
+                </motion.div>
+            )}
             <span className="text-[var(--c4-txt)]">{session.name}</span>
             <span className="user_name">{session.role}</span>
             <Option name="Inicio" icon={faHome} to="./home" />
@@ -41,23 +57,6 @@ function Option({ name, icon, to }) {
     const pathnameWithoutPanel = pathname.replace("./", "");
     const isActive = pathnameWithoutPanel === to.replace(".", "");
     return (
-        // & a.option {
-        //     display: flex;
-        //     align-items: center;
-        //     width: 100%;
-        //     height: 30px;
-        //     min-height: 30px;
-        //     margin: 5px 0;
-        //     padding: 0 5px;
-        //     text-decoration: none;
-        //     /* color: var(--color4-txt); */
-        //     color: var(--c4-txt);
-        //     border-radius: 2px;
-        // }
-
-        // & a.option:hover {
-        //     background: rgba(0, 0, 0, 0.1);
-        // }
         <Link
             className={cls(
                 "group option flex items-center gap-1 w-full h-[30px] min-h-[30px] my-[1px] mx-0 py-5 px-2 text-[--c4-txt] text-base rounded-sm transiton hover:bg-black/20",
@@ -74,20 +73,6 @@ function Option({ name, icon, to }) {
 }
 
 const PanelSidebarComponent = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 200px;
-    min-width: 200px;
-    height: 100%;
-    padding: 10px;
-    border-right: solid 1px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.3);
-    /* background: var(--color4-bg); */
-    background: var(--c4-bg);
-    overflow-y: auto;
-    overflow-x: hidden;
-
     & span.user_name {
         display: block;
         width: 100%;
