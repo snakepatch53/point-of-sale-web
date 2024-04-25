@@ -1,12 +1,13 @@
 import "./RouterPanel.css";
 
 import { Route, Routes } from "react-router-dom";
-import { Suspense, lazy, useContext, useState } from "react";
+import { Suspense, lazy, useContext } from "react";
 import Header from "./panel.components/partials/Header";
 import Sidebar from "./panel.components/partials/Sidebar";
 import { SessionContext } from "./contexts/session";
 import Loading from "./components/Loading";
 import CrudProgress from "./panel.components/crud/CrudProgress";
+import { SidebarContext } from "./contexts/sidebar";
 
 const Home = lazy(() => import("./panel.pages/Home"));
 const Profile = lazy(() => import("./panel.pages/Profile"));
@@ -14,20 +15,16 @@ const Profile = lazy(() => import("./panel.pages/Profile"));
 
 export default function PanelRouter() {
     const { progress } = useContext(SessionContext);
-
-    const [showSidebar, setShowSidebar] = useState(true);
-    const handleClickShowSidebar = () => {
-        setShowSidebar(showSidebar ? false : true);
-    };
+    const { isOpen: IsOpenSidebar } = useContext(SidebarContext);
 
     return (
         <>
             <div className="panel-page">
-                <div className={"panel-page-state " + (!showSidebar ? "close" : "")}></div>
-                <Header onClickButtonBars={handleClickShowSidebar} />
+                <div className={"panel-page-state " + (!IsOpenSidebar ? "close" : "")}></div>
+                <Header />
 
                 <div className="panel-page-content">
-                    <Sidebar isOpen={showSidebar} />
+                    <Sidebar />
                     <div className="panel-page-page scroll-style relative" id="main-content">
                         <Suspense fallback={<Loading />}>
                             <Routes>

@@ -4,10 +4,12 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { SessionContext } from "../../contexts/session";
 import { InfoContext } from "../../contexts/info";
+import { SidebarContext } from "../../contexts/sidebar";
 
-export default function Header({ onClickButtonBars }) {
+export default function Header() {
     const { logout } = useContext(SessionContext);
     const { info } = useContext(InfoContext);
+    const { toggleOpen: toggleOpenSidebar } = useContext(SidebarContext);
     return (
         <>
             <div className="panel-page-header fixed top-0 left-0 flex items-center w-full h-[50px] bg-[--c3] z-50">
@@ -21,7 +23,7 @@ export default function Header({ onClickButtonBars }) {
                 </span>
                 <button
                     className="flex justify-center items-center w-[50px] h-full bg-transparent cursor-pointer hover:bg-black/10"
-                    onClick={onClickButtonBars}
+                    onClick={toggleOpenSidebar}
                 >
                     <FontAwesomeIcon icon={faBars} className="text-[1.1rem] text-[--c3-txt]" />
                 </button>

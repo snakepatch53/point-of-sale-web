@@ -8,20 +8,22 @@ import { SessionContext } from "../../contexts/session";
 import { cls } from "../../lib/utils";
 import { InfoContext } from "../../contexts/info";
 import { motion } from "framer-motion";
+import { SidebarContext } from "../../contexts/sidebar";
 
-export default function Sidebar({ isOpen }) {
+export default function Sidebar() {
     const { session } = useContext(SessionContext);
     const { info } = useContext(InfoContext);
+    const { isOpen: IsOpenSidebar } = useContext(SidebarContext);
     return (
         <div className="panel-sidebar-component  relative z-10 flex flex-col items-center w-[200px] min-w-[200px] h-full p-[10px] border-r overflow-y-auto overflow-x-hidden bg-[--c3] ">
-            {isOpen && (
+            {IsOpenSidebar && (
                 <img
                     src={info.logo_url}
                     alt={"Foto del usuario " + session.name}
                     className="bg-[--c3-txt] block w-full max-w-[150px] h-auto aspect-video my-[10px] mx-0 rounded object-contain object-center p-2"
                 />
             )}
-            {!isOpen && (
+            {!IsOpenSidebar && (
                 <motion.div
                     initial={{ opacity: 0, maxHeight: 0, maxWidth: 0 }}
                     animate={{ opacity: 1, maxHeight: 150, maxWidth: 150 }}

@@ -6,6 +6,7 @@ import { Notification } from "./components/Notification";
 import AuthGuard from "./guards/AuthGuard";
 import SessionOutGuard from "./guards/SessionOutGuard";
 import PanelRouter from "./PanelRouter";
+import { SidebarProvider } from "./contexts/sidebar";
 
 const Login = lazy(() => import("./views/Login"));
 
@@ -20,7 +21,14 @@ function App() {
                         <Route path="/login" element={<Login />} />
                     </Route>
                     <Route element={<AuthGuard />}>
-                        <Route path="/*" element={<PanelRouter />} />
+                        <Route
+                            path="/*"
+                            element={
+                                <SidebarProvider>
+                                    <PanelRouter />
+                                </SidebarProvider>
+                            }
+                        />
                     </Route>
                 </Routes>
             </BrowserRouter>
