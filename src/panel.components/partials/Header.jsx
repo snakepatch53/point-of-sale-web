@@ -2,8 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Header.css";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
-import { SessionContext } from "../contexts/session";
-import { InfoContext } from "../contexts/info";
+import { SessionContext } from "../../contexts/session";
+import { InfoContext } from "../../contexts/info";
 
 export default function Header({ onClickButtonBars }) {
     const { logout } = useContext(SessionContext);

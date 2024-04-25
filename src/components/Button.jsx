@@ -6,16 +6,17 @@ export default function Button({
     as = "button",
     text = null,
     icon = null,
-    classNameWrap = "",
-    classNameIcon = "",
+    className = "",
+    classText = "",
+    classIcon = "",
     ...props
 }) {
     const Component = as;
     return (
         <Component
             className={cls(
-                "bg-[--c3] py-2 rounded-sm text-[--c3-txt] text-md uppercase ",
-                classNameWrap
+                "flex justify-center items-center gap-1 bg-[--c3] py-2 rounded-sm text-[--c3-txt] text-md uppercase opacity-80 transition-all hover:scale-[1.02] hover:opacity-100 ",
+                className
             )}
             {...props}
         >
@@ -23,8 +24,8 @@ export default function Button({
                 children
             ) : (
                 <>
-                    {icon && <FontAwesomeIcon icon={icon} className={classNameIcon} />}
-                    {text && <span>{text}</span>}
+                    {icon && <FontAwesomeIcon icon={icon} className={classIcon} />}
+                    {text && <span className={cls(classText)}>{text}</span>}
                 </>
             )}
         </Component>

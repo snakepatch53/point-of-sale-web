@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { SessionContext } from "../contexts/session";
 import { InfoContext } from "../contexts/info";
-import Button from "../components/Button";
+import Button from "../components/ui/Button";
 
 export default function Login() {
     const { info } = useContext(InfoContext);

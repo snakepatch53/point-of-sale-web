@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    src: url("./assets/JosefinSans-Regular.ttf");
+    font-family: josefin;
+}
+
+/* @font-face {
+    src: url("./assets/fonts/GreatVibes-Regular.ttf");
+    font-family: title2;
+} */
+
+/* @font-face{ */
+/* src: url("./assets/fonts/RobotoCondensed-Regular.ttf"); */
+/* src: local("roboto"); */
+/* font-weight: bold; */
+/* font-family: link; */
+/* } */
+/* 
+@font-face {
+    src: url("./assets/fonts/OpenSans-Regular.ttf");
+    font-family: content;
+} */

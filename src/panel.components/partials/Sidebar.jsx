@@ -4,9 +4,9 @@ import { faBagShopping, faCartShopping, faHome, faUser } from "@fortawesome/free
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { SessionContext } from "../contexts/session";
-import { cls } from "../lib/utils";
-import { InfoContext } from "../contexts/info";
+import { SessionContext } from "../../contexts/session";
+import { cls } from "../../lib/utils";
+import { InfoContext } from "../../contexts/info";
 import { motion } from "framer-motion";
 
 export default function Sidebar({ isOpen }) {

@@ -1,5 +1,5 @@
 import { faCamera, faSave } from "@fortawesome/free-solid-svg-icons";
-import Button from "../panel.components/Button";
+import Button from "../panel.components/ui/Button";
 import { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { getCourses } from "../services/courses";

@@ -1,9 +1,9 @@
 import "./RouterPanel.css";
 
 import { Route, Routes } from "react-router-dom";
-import Header from "./panel.components/Header";
 import { Suspense, lazy, useContext, useState } from "react";
-import Sidebar from "./panel.components/Sidebar";
+import Header from "./panel.components/partials/Header";
+import Sidebar from "./panel.components/partials/Sidebar";
 import { SessionContext } from "./contexts/session";
 import Loading from "./components/Loading";
 import CrudProgress from "./panel.components/crud/CrudProgress";

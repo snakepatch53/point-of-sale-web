@@ -1,6 +1,6 @@
 // import "./Button.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { cls } from "../utils/utils";
+import { cls } from "../../lib/utils";
 
 export default function Button({
     icon = null,
