@@ -29,11 +29,11 @@ export default function Home() {
                     <table className="text-center border-collapse" border="1">
                         <thead className="text-[--c3-txt2] uppercase ">
                             <tr>
-                                <th>Producto</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
-                                <th>Subtotal</th>
-                                <th>Acción</th>
+                                <th className="font-sans">Producto</th>
+                                <th className="font-sans">Cantidad</th>
+                                <th className="font-sans">Precio</th>
+                                <th className="font-sans">Subtotal</th>
+                                <th className="font-sans">Acción</th>
                             </tr>
                         </thead>
                         <tbody className=" text-[--c3-txt] ">
@@ -45,21 +45,21 @@ export default function Home() {
                         <tfoot className=" font-bold text-[--c3-txt2] uppercase ">
                             <tr>
                                 <td colSpan="2"></td>
-                                <td>TAX (12%):</td>
-                                <td>$10.00</td>
+                                <td className="font-sans">SUBTOTAL:</td>
+                                <td className="font-sans">$80.00</td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td colSpan="2"></td>
-                                <td>SUBTOTAL:</td>
-                                <td>$80.00</td>
+                                <td className="font-sans">TAX (12%):</td>
+                                <td className="font-sans">$10.00</td>
                                 <td></td>
                             </tr>
                         </tfoot>
                     </table>
                     <Button
                         as="button"
-                        text="Cobrar $80"
+                        text="Cobrar $90"
                         className="gap-0 bg-[--c1] text-[--c1-txt] "
                         classText="font-sans text-md"
                     />
@@ -92,7 +92,7 @@ function TableProductItem() {
     };
     return (
         <tr>
-            <td>Producto 1</td>
+            <td className="font-sans">Producto 1</td>
             <td>
                 <div className="flex justify-center items-center h-8">
                     <Button
@@ -101,7 +101,7 @@ function TableProductItem() {
                         className="aspect-square h-full"
                         onClick={handleQuantity(false)}
                     />
-                    <span className="flex justify-center items-center aspect-square h-full">
+                    <span className="flex justify-center items-center aspect-square h-full font-sans">
                         {quantity}
                     </span>
                     <Button
@@ -112,8 +112,8 @@ function TableProductItem() {
                     />
                 </div>
             </td>
-            <td>$10.00</td>
-            <td>$10.00</td>
+            <td className="font-sans">$10.00</td>
+            <td className="font-sans">$10.00</td>
             <td>
                 <div className="flex justify-center items-center py-1">
                     <Button as="button" icon={faTrash} className="text-sm aspect-square w-8" />
