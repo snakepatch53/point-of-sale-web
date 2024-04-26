@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { existSession, login, logout } from "../services/users";
+import { login, logout } from "../services/users";
 
 export const SessionContext = createContext();
 
@@ -39,15 +39,15 @@ export function SessionProvider({ children }) {
 
     useEffect(() => {
         // temporal
-        window.localStorage.setItem(
-            "session",
-            JSON.stringify({
-                id: 1,
-                token: "123",
-                name: "Harold Hernández",
-                role: "Administrador",
-            })
-        );
+        // window.localStorage.setItem(
+        //     "session",
+        //     JSON.stringify({
+        //         id: 1,
+        //         token: "123",
+        //         name: "Harold Hernández",
+        //         role: "Administrador",
+        //     })
+        // );
 
         const session_str = window.localStorage.getItem("session");
         if (!session_str) return setSession([]);

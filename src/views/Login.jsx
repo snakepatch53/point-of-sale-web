@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { SessionContext } from "../contexts/session";
 import { InfoContext } from "../contexts/info";
-import Button from "../components/ui/Button";
+import Button from "../components/Button";
 
 export default function Login() {
     const { info } = useContext(InfoContext);
@@ -16,7 +16,7 @@ export default function Login() {
                 <div
                     className="absolute inset-0"
                     style={{
-                        backgroundImage: `linear-gradient(to right, var(--c1), var(--c2), var(--c1))`,
+                        backgroundImage: `var(--gd1)`,
                     }}
                 />
                 <div className="relative z-10 flex flex-col  items-center p-10  w-full max-w-[400px] bg-black/10 rounded-sm">
@@ -76,10 +76,9 @@ function Form() {
                         type="submit"
                         text={!progress ? "Iniciar Sesión" : ""}
                         icon={progress ? faSpinner : ""}
-                        classNameIcon="animate-spin text-sm"
-                        classNameWrap={cls("", {
-                            "text-black/80 hover:text-black/80 bg-gray-300 hover:bg-gray-300":
-                                progress,
+                        classIcon="animate-spin text-sm"
+                        className={cls("", {
+                            "text-white/80 bg-black/30 hover:cursor-wait": progress,
                         })}
                     />
                 </form>

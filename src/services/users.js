@@ -85,7 +85,7 @@ export async function registerUser({ data }) {
 
 export async function login({ data }) {
     const response = await fetchAdapter({
-        resource: "login",
+        resource: resource + "/login",
         data,
         method: "POST",
         all: true,
@@ -96,7 +96,7 @@ export async function login({ data }) {
 
 export async function logout() {
     const response = await fetchAdapter({
-        resource: "logout",
+        resource: resource + "/logout",
         method: "POST",
         // all: true,
         // printResponse: true,
