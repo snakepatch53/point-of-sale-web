@@ -6,8 +6,6 @@ import { useContext, useState } from "react";
 import { SalesDashboardContext, SalesDashboardProvider } from "../contexts/sales-dashboard";
 import { InfoContext } from "../contexts/info";
 
-// TODO: tengo que sincronizar la cantidad con el stock de los productos de la sección de productos
-
 export default function Home() {
     return (
         <SalesDashboardProvider>

@@ -36,15 +36,26 @@ export function SalesDashboardProvider({ children }) {
                         : sale
                 )
             );
-            return;
+        } else {
+            setSales((prev) => {
+                const newSale = {
+                    ...product,
+                    quantity: 1,
+                };
+                return prev ? [...prev, newSale] : [newSale];
+            });
         }
-        setSales((prev) => {
-            const newSale = {
-                ...product,
-                quantity: 1,
-            };
-            return prev ? [...prev, newSale] : [newSale];
-        });
+
+        setProducts((prev) =>
+            prev.map((p) =>
+                p.id === product.id
+                    ? {
+                          ...p,
+                          stock: p.stock - 1,
+                      }
+                    : p
+            )
+        );
     };
 
     const removeSale = (product) => {
@@ -53,30 +64,34 @@ export function SalesDashboardProvider({ children }) {
         });
     };
 
-    const incrementQuantity = (product) => {
+    const changeQuantity = (product, quantity) => {
         setSales((prev) =>
             prev.map((sale) =>
                 sale.id === product.id
                     ? {
                           ...sale,
-                          quantity: sale.quantity + 1,
+                          quantity: sale.quantity + quantity,
                       }
                     : sale
+            )
+        );
+        setProducts((prev) =>
+            prev.map((p) =>
+                p.id === product.id
+                    ? {
+                          ...p,
+                          stock: p.stock - quantity,
+                      }
+                    : p
             )
         );
     };
 
+    const incrementQuantity = (product) => changeQuantity(product, 1);
+
     const decrementQuantity = (product) => {
-        setSales((prev) =>
-            prev.map((sale) =>
-                sale.id === product.id
-                    ? {
-                          ...sale,
-                          quantity: sale.quantity - 1,
-                      }
-                    : sale
-            )
-        );
+        if (product.quantity === 1) return removeSale(product);
+        changeQuantity(product, -1);
     };
 
     return (
