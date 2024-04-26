@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PageContent from "../components/PageContent";
 import { faMinus, faPlus, faSearch, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Button from "../components/Button";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SalesDashboardContext, SalesDashboardProvider } from "../contexts/sales-dashboard";
 import { InfoContext } from "../contexts/info";
 
@@ -24,12 +24,30 @@ export default function Home() {
 
 function SectionProducts() {
     const { products, addSale } = useContext(SalesDashboardContext);
+    const [filteredProducts, setFilteredProducts] = useState(null);
+
+    useEffect(() => {
+        setFilteredProducts(products);
+    }, [products]);
+
     const handleAddSale = (product) => () => addSale(product);
+
+    const handleSearch = (e) => {
+        const value = e.target.value.toString().toLowerCase();
+        if (!value) return setFilteredProducts(products);
+        const filtered = products?.filter(
+            (product) =>
+                product?.name?.toString()?.toLowerCase()?.includes(value) ||
+                product?.mark?.toString()?.toLowerCase()?.includes(value) ||
+                product?.category?.toString()?.toLowerCase()?.includes(value)
+        );
+        setFilteredProducts(filtered);
+    };
     return (
         <div className="flex-1 flex flex-col gap-4 bg-[--c3] p-4 rounded-md border-solid border-t-2 border-t-[--c3-txt2] ">
-            <Search placeholder="Busca por código, nombre o categoría" />
+            <Search placeholder="Busca por código, nombre o categoría" onSearch={handleSearch} />
             <div className="grid lg:grid-cols-2 gap-2">
-                {products?.map((product) => (
+                {filteredProducts?.map((product) => (
                     <SectionProductItem
                         key={product.id}
                         src={product.photo_url}

@@ -62,6 +62,16 @@ export function SalesDashboardProvider({ children }) {
         setSales((prev) => {
             return prev.filter((sale) => sale.id !== product.id);
         });
+        setProducts((prev) =>
+            prev.map((p) =>
+                p.id === product.id
+                    ? {
+                          ...p,
+                          stock: p.stock + product.quantity,
+                      }
+                    : p
+            )
+        );
     };
 
     const changeQuantity = (product, quantity) => {
@@ -87,7 +97,16 @@ export function SalesDashboardProvider({ children }) {
         );
     };
 
-    const incrementQuantity = (product) => changeQuantity(product, 1);
+    const incrementQuantity = (product) => {
+        const stock = products.find((p) => p.id === product.id).stock || 0;
+        if (stock === 0)
+            return showNotification({
+                title: "Cancelado",
+                message: "Producto sin stock",
+                type: "warning",
+            });
+        changeQuantity(product, 1);
+    };
 
     const decrementQuantity = (product) => {
         if (product.quantity === 1) return removeSale(product);
