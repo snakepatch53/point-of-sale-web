@@ -39,18 +39,6 @@ export async function updateUser({ id, data }) {
     return response;
 }
 
-export async function updateProfile({ data }) {
-    const response = await fetchAdapter({
-        resource: "update-logued",
-        data,
-        method: "POST",
-        all: true,
-        formData: true,
-        // printResponse: true,
-    });
-    return response;
-}
-
 export async function updateUserSession({ data }) {
     const response = await fetchAdapter({
         resource: "update-user-session",
@@ -68,17 +56,6 @@ export async function destroyUser({ id }) {
         resource: resource + "/" + id,
         method: "DELETE",
         all: true,
-    });
-    return response;
-}
-
-export async function registerUser({ data }) {
-    const response = await fetchAdapter({
-        resource: "register",
-        data,
-        method: "POST",
-        all: true,
-        formData: true,
     });
     return response;
 }
