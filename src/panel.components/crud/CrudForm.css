@@ -17,10 +17,9 @@
     width: 100%;
 
     /* background: rgba(0, 0, 0, 0.1); */
-    background: var(--c3-bg);
-    border-top: solid 3px var(--c2-bg);
-    border-radius: 3px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+    background: var(--c3);
+    border-top: solid 2px var(--c3-txt2);
+    border-radius: 6px;
 }
 
 .panel-crudform-component.open {
@@ -50,10 +49,6 @@
     border-bottom: solid 1px rgba(0, 0, 0, 0.2);
 }
 
-.panel-crudform-component .ideaform .head h3 {
-    font-size: 17px;
-}
-
 .panel-crudform-component .ideaform .head input {
     width: auto;
     margin: 0 0 0 5px;
@@ -79,164 +74,28 @@
     font-size: 15px;
     font-weight: bold;
     /* color: var(--tertiary_color); */
-    color: var(--c7-txt);
+    color: var(--c3-txt);
+    opacity: 0.8;
     margin: 0 0 5px 0;
 }
 
 .panel-crudform-component .ideaform .body .campo span b {
-    color: red;
+    color: rgb(145, 3, 3);
 }
 
-.ideaform .body .campo input,
+.ideaform .body .campo input:not(.nostyles),
 .panel-crudform-component .ideaform .body .campo select {
     width: 100%;
-    height: 35px;
-    padding: 5px 10px;
-    border-radius: 2px;
-    border: solid 1px rgba(0, 0, 0, 0.2);
+    height: 47px;
+    padding: 0 10px;
+    border-radius: 5px;
     font-size: 16px;
-    background: #ffffff;
-}
-
-.panel-crudform-component .ideaform .body .campo .radios {
-    display: flex;
-    background: #ffffff;
-    width: 100%;
-    height: 35px;
-    border: solid 1px rgba(0, 0, 0, 0.2);
-    border-radius: 2px;
-}
-
-.panel-crudform-component .ideaform .body .campo .radios label {
-    flex-grow: 1;
-    position: relative;
-    height: 100%;
-}
-
-.panel-crudform-component .ideaform .body .campo .radios span {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin: 0;
-    font-size: 16px;
-    font-weight: normal;
-    cursor: pointer;
-}
-
-.panel-crudform-component .ideaform .body .campo .radios label span:before {
-    position: absolute;
-    bottom: 0;
-    content: "";
-    display: block;
-    width: 0%;
-    height: 3px;
-    background: rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-.panel-crudform-component .ideaform .body .campo .radios label span:hover:before {
-    width: 100%;
-}
-
-.panel-crudform-component .ideaform .body .campo .radios label input:checked ~ span:before {
-    width: 100%;
-    height: 100%;
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.01) 90%, var(--color1-bg) 0%); */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.01) 90%, red 0%);
+    background: var(--c3);
+    color: var(--c3-txt);
 }
 
 .panel-crudform-component .ideaform .body .campo .radios input {
     display: none;
-}
-
-.panel-crudform-component .ideaform .body .campo .inputfile {
-    position: relative;
-    width: 100%;
-    height: 35px;
-    cursor: pointer;
-    --width_placeholder: 172px;
-}
-
-.panel-crudform-component .ideaform .body .campo .inputfile input[type="file"]:before,
-.panel-crudform-component .ideaform .body .campo .inputfile svg {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    content: "       Seleccionar archivo";
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.panel-crudform-component .ideaform .body .campo .inputfile input[type="file"]:before {
-    width: var(--width_placeholder);
-    height: 35px;
-    background: #25b0f3;
-    color: #ffffff;
-    font-size: 15px;
-}
-
-.panel-crudform-component
-    .ideaform
-    .body
-    .campo
-    .inputfile
-    input[type="file"].placeholder_on:before {
-    width: 100%;
-    content: attr(placeholder);
-}
-
-.panel-crudform-component .ideaform .body .campo .inputfile svg {
-    width: 20px;
-    height: 20px;
-    left: 5px;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    color: #fff;
-}
-
-.panel-crudform-component .ideaform .body .campo .inputfile input[type="file"]:after {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    content: "";
-    width: 0%;
-    height: 100%;
-    z-index: 1;
-    border-radius: 0 0 3px 3px;
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.1) 88%, var(--color1-bg) 0); */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 88%, red 0);
-    transition: all 0.3s ease;
-}
-
-.panel-crudform-component .ideaform .body .campo .inputfile input[type="file"]:hover:after {
-    width: var(--width_placeholder);
-}
-
-.panel-crudform-component .ideaform .body .campo .inputpass {
-    position: relative;
-}
-
-.panel-crudform-component .ideaform .body .campo button.showpass {
-    background: #4799aa;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 35px;
-    height: 35px;
-    border-radius: 1px;
-    pointer-events: all;
-    cursor: pointer;
-}
-
-.panel-crudform-component .ideaform .body .campo button.showpass svg {
-    width: 20px;
-    height: 20px;
-    color: #fff;
 }
 
 .panel-crudform-component .ideaform .foot {

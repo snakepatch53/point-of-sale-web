@@ -17,10 +17,9 @@
     width: 100%;
 
     /* background: rgba(0, 0, 0, 0.1); */
-    background: var(--c3-bg);
-    border-top: solid 3px var(--c6-bg);
-    border-radius: 3px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+    background: var(--c3);
+    border-top: solid 2px var(--c3-txt2);
+    border-radius: 6px;
 }
 
 .panel-crudtable-component.open {
@@ -49,10 +48,11 @@
     position: sticky;
     top: 0;
     z-index: 1;
-    background: #ffffff;
-    color: #000000;
+    background: var(--c4);
+    backdrop-filter: blur(2px);
+    color: var(--c3-txt2);
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
-    --radius: 4px;
+    --radius: 10px;
 }
 
 .panel-crudtable-component .ideatable table thead tr th:first-child {
@@ -93,7 +93,8 @@
 }
 
 .panel-crudtable-component .ideatable table tbody tr td {
-    color: var(--color3-txt);
+    color: var(--c3-txt);
+    opacity: 0.8;
 }
 
 .panel-crudtable-component .ideatable table tbody tr td .ideabutton.disabled:hover:before {

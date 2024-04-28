@@ -1,6 +1,6 @@
-import { fetchAdapter } from "./apiConfig";
+import { fetchAdapter } from "./../services/apiConfig";
 
-const resource = "clients";
+const resource = "supliers";
 
 function mapNames(data) {
     return data.map(({ ...props }) => ({
@@ -8,7 +8,7 @@ function mapNames(data) {
     }));
 }
 
-export async function getClients() {
+export async function getSuppliers() {
     const response = await fetchAdapter({
         resource,
         //printResponse: true,
@@ -16,42 +16,28 @@ export async function getClients() {
     return mapNames(response);
 }
 
-export async function storageClient({ data }) {
+export async function storageSupplier({ data }) {
     const response = await fetchAdapter({
         resource,
         data,
         method: "POST",
         all: true,
-        // formData: true,
     });
     return response;
 }
 
-export async function updateClient({ id, data }) {
+export async function updateSupplier({ id, data }) {
     const response = await fetchAdapter({
         resource: resource + "/" + id,
         data,
         method: "PUT",
         all: true,
-        // formData: true,
         // printResponse: true,
     });
     return response;
 }
 
-export async function updateClientSession({ data }) {
-    const response = await fetchAdapter({
-        resource: "update-user-session",
-        data,
-        method: "POST",
-        all: true,
-        formData: true,
-        // printResponse: true,
-    });
-    return response;
-}
-
-export async function destroyClient({ id }) {
+export async function destroySupplier({ id }) {
     const response = await fetchAdapter({
         resource: resource + "/" + id,
         method: "DELETE",

@@ -1,10 +1,10 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PageContent from "../components/PageContent";
-import { faMinus, faPlus, faSearch, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Button from "../components/Button";
 import { useContext, useEffect, useState } from "react";
 import { SalesDashboardContext, SalesDashboardProvider } from "../contexts/sales-dashboard";
 import { InfoContext } from "../contexts/info";
+import Search from "../panel.components/ui/Search";
 
 export default function Home() {
     return (
@@ -170,22 +170,6 @@ function SectionSale() {
                 className="gap-0 bg-[--c1] text-[--c1-txt] "
                 classText="font-sans text-md"
             />
-        </div>
-    );
-}
-
-function Search({ placeholder, onSearch }) {
-    return (
-        <div className="rounded-md">
-            <div className="w-full flex items-center gap-1 bg-[--c3] p-3 rounded-md text-white">
-                <input
-                    className="flex-1 bg-transparent"
-                    type="text"
-                    placeholder={placeholder || "Buscar..."}
-                    onChange={onSearch}
-                />
-                <FontAwesomeIcon icon={faSearch} />
-            </div>
         </div>
     );
 }

@@ -15,7 +15,7 @@ export default function Button({
     return (
         <Component
             className={cls(
-                "flex justify-center items-center gap-1 bg-[--c3] py-2 rounded-sm text-[--c3-txt] text-md uppercase opacity-80 transition-all hover:scale-[1.02] hover:opacity-100 ",
+                "flex justify-center items-center gap-1 bg-[--c3] py-2 px-2 rounded-sm font-sans text-[--c3-txt] text-md uppercase opacity-80 transition-all hover:scale-[1.02] hover:opacity-100 ",
                 className
             )}
             {...props}

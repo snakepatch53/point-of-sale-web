@@ -1,40 +1,16 @@
 import CrudHead from "../panel.components/crud/CrudHead";
-import {
-    CrudTable,
-    CrudTableTdFlex,
-    CrudTableTdImage,
-    CrudTableTdText,
-} from "../panel.components/crud/CrudTable";
+import { CrudTable, CrudTableTdFlex, CrudTableTdText } from "../panel.components/crud/CrudTable";
 import { CrudForm, CrudFormInput } from "../panel.components/crud/CrudForm";
 import CrudConfirm from "../panel.components/crud/CrudConfirm";
 import CrudProgress from "../panel.components/crud/CrudProgress";
-// import Button from "../panel.components/ui/Button";
 import { faPen, faTrash, faUsers } from "@fortawesome/free-solid-svg-icons";
 import "react-notifications-component/dist/theme.css";
-import { destroyUser, getUsers, storageUser, updateUser } from "../services/users";
+import { destroyClient, getClients, storageClient, updateClient } from "../services/clients";
 import useCrudPanel from "../hooks/useCrudPanel";
 import PageContent from "../components/PageContent";
 import Button from "../components/Button";
 
-export default function Users() {
-    const extraValidations = ($form, showNotification, { isEmail }) => {
-        let validate = true;
-        if ($form.password?.value && $form.password?.value?.length < 8) {
-            showNotification("La contraseña debe tener minimo 8 caracteres");
-            validate = false;
-        }
-        if ($form.photo?.files?.length && $form.photo?.files[0]?.size > 2000000) {
-            showNotification("La foto debe pesar maximo 2MB");
-            validate = false;
-        }
-        if (!isEmail($form.email?.value)) {
-            showNotification("El correo electronico no es valido");
-            validate = false;
-        }
-
-        return validate;
-    };
-
+export default function Clients() {
     const {
         entityName,
         pluralEntityName,
@@ -53,17 +29,13 @@ export default function Users() {
         handleDelete,
         handleSearch,
     } = useCrudPanel({
-        entityName: "Usuario",
-        pluralEntityName: "Usuarios",
-        excludeFieldsValidationEdit: ["password", "photo"],
-        searchFields: ["name", "lastname", "email", "role"],
-        extraValidations,
-        isStorageMultipartFormData: true,
-        isUpdateMultipartFormData: true,
-        crudGet: getUsers,
-        crudStorage: storageUser,
-        crudUpdate: updateUser,
-        crudDestroy: destroyUser,
+        entityName: "Cliente",
+        pluralEntityName: "Clientes",
+        searchFields: ["name", "description"],
+        crudGet: getClients,
+        crudStorage: storageClient,
+        crudUpdate: updateClient,
+        crudDestroy: destroyClient,
     });
 
     return (
@@ -77,16 +49,17 @@ export default function Users() {
             />
 
             <CrudTable
-                titles={["Foto", "Nombre", "Apellido", "Email", "Privilegio"]}
+                titles={["DNI", "Nombre", "Apellido", "Ciudad", "Celular", "Email"]}
                 dataList={datalist}
                 isOpen={table}
                 onRowPrint={(item) => (
                     <tr key={item.id}>
-                        <CrudTableTdImage src={item.photo_url} alt={"Foto " + item.name} />
+                        <CrudTableTdText value={item.dni} />
                         <CrudTableTdText value={item.name} />
                         <CrudTableTdText value={item.lastname} />
+                        <CrudTableTdText value={item.city} />
+                        <CrudTableTdText value={item.cellphone} />
                         <CrudTableTdText value={item.email} />
-                        <CrudTableTdText value={item.role} />
                         <CrudTableTdFlex>
                             <Button
                                 icon={faPen}
@@ -114,69 +87,76 @@ export default function Users() {
                 formRef={$form}
             >
                 <CrudFormInput
-                    label="Nombres"
-                    placeholder="Escriba los nombres"
+                    label="Nombre"
+                    placeholder="Escriba el primer nombre "
                     name="name"
                     required
                 />
                 <CrudFormInput
-                    label="Apellidos"
-                    placeholder="Escriba los apellidos"
+                    label="Segundo Nombre"
+                    placeholder="Escriba el segundo nombre "
+                    name="name2"
+                    required
+                />
+                <CrudFormInput
+                    label="Apellido"
+                    placeholder="Escriba el primer apellido "
                     name="lastname"
                     required
                 />
                 <CrudFormInput
-                    label="Celular"
-                    placeholder="Escriba su numero de celular"
-                    name="phone"
+                    label="Segundo Apellido"
+                    placeholder="Escriba el segundo apellido "
+                    name="lastname2"
                     required
                 />
                 <CrudFormInput
-                    label="Direccion"
-                    placeholder="Escriba una direccion"
+                    label="Cedula"
+                    placeholder="Escriba el documento de identificación "
+                    name="dni"
+                    required
+                />
+                <CrudFormInput
+                    label="Ruc"
+                    placeholder="Escriba el número de ruc "
+                    name="ruc"
+                    required
+                />
+                <CrudFormInput
+                    label="Ciudad"
+                    placeholder="Escriba la ciudad "
+                    name="city"
+                    required
+                />
+                <CrudFormInput
+                    label="Dirección"
+                    placeholder="Escriba una dirección "
                     name="address"
                     required
                 />
                 <CrudFormInput
-                    label="Correo Electronico"
-                    placeholder="Escriba el correo electronico"
+                    label="Teléfono"
+                    placeholder="Escriba un número de teléfono "
+                    name="phone"
+                    required
+                />
+                <CrudFormInput
+                    label="Celular"
+                    placeholder="Escriba un número de celular "
+                    name="cellphone"
+                    required
+                />
+                <CrudFormInput
+                    label="Email"
+                    placeholder="Escriba un email "
                     name="email"
                     required
                 />
-                <CrudFormInput
-                    label="Contraseña"
-                    placeholder="Escriba la contraseña"
-                    type="password"
-                    name="password"
-                    required
-                />
-                <CrudFormInput
-                    name="role"
-                    label="Privilegios"
-                    type="radio"
-                    radioOptions={[
-                        { value: "Administrador", label: "Administrador", checked: true },
-                        { value: "Vendedor", label: "Vendedor" },
-                        { value: "Cliente", label: "Cliente" },
-                    ]}
-                    required
-                />
-                <CrudFormInput
-                    name="state"
-                    label="Estado"
-                    type="radio"
-                    radioOptions={[
-                        { value: "Activo", label: "Activo", checked: true },
-                        { value: "Inactivo", label: "Inactivo" },
-                    ]}
-                    required
-                />
-                <CrudFormInput label="Foto" name="photo" type="file" />
             </CrudForm>
 
             <CrudConfirm
                 isOpen={confirm}
-                text="¿Seguro de eliminar este usuario?"
+                text="¿Seguro de eliminar este cliente?"
                 onClickDelete={handleDelete}
                 onClickCancel={hanleCancel}
             />

@@ -1,6 +1,6 @@
-import { fetchAdapter } from "./apiConfig";
+import { fetchAdapter } from "./../services/apiConfig";
 
-const resource = "clients";
+const resource = "productSales";
 
 function mapNames(data) {
     return data.map(({ ...props }) => ({
@@ -8,50 +8,36 @@ function mapNames(data) {
     }));
 }
 
-export async function getClients() {
+export async function getProductSales() {
     const response = await fetchAdapter({
         resource,
-        //printResponse: true,
+        printResponse: true,
     });
     return mapNames(response);
 }
 
-export async function storageClient({ data }) {
+export async function storageProductSale({ data }) {
     const response = await fetchAdapter({
         resource,
         data,
         method: "POST",
         all: true,
-        // formData: true,
     });
     return response;
 }
 
-export async function updateClient({ id, data }) {
+export async function updateProductSale({ id, data }) {
     const response = await fetchAdapter({
         resource: resource + "/" + id,
         data,
         method: "PUT",
         all: true,
-        // formData: true,
         // printResponse: true,
     });
     return response;
 }
 
-export async function updateClientSession({ data }) {
-    const response = await fetchAdapter({
-        resource: "update-user-session",
-        data,
-        method: "POST",
-        all: true,
-        formData: true,
-        // printResponse: true,
-    });
-    return response;
-}
-
-export async function destroyClient({ id }) {
+export async function destroyProductSale({ id }) {
     const response = await fetchAdapter({
         resource: resource + "/" + id,
         method: "DELETE",

@@ -1,4 +1,4 @@
-import { cls } from "../utils/utils";
+import { cls } from "../../lib/utils";
 import "./CrudTable.css";
 import CrudTableSkeleton from "./CrudTableSkeleton";
 
@@ -91,7 +91,7 @@ export function CrudTableTdSvg({ code, className = "", fill = "#000", ...props }
 export function CrudTableTdFlex({ children }) {
     return (
         <td className="td-action">
-            <div className="buttons-flex">{children}</div>
+            <div className="buttons-flex justify-center">{children}</div>
         </td>
     );
 }

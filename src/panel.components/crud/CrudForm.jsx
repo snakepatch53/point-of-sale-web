@@ -6,9 +6,10 @@ import {
     faImage,
     faSave,
 } from "@fortawesome/free-solid-svg-icons";
-import Button from "../Button";
+import Button from "../ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { cls } from "../../lib/utils";
 
 export function CrudForm({
     children,
@@ -29,7 +30,9 @@ export function CrudForm({
         <section className={"relative z-10 panel-crudform-component " + (isOpen ? "open" : "")}>
             <form className="ideaform" onSubmit={onSubmit} ref={formRef} noValidate>
                 <div className="head">
-                    <h3>{title}</h3>
+                    <h3 className="uppercase font-sans font-bold text-md text-[--c3-txt2]">
+                        {title}
+                    </h3>
                 </div>
                 <div className="body">{children}</div>
                 <div className="foot">
@@ -82,10 +85,21 @@ function InputForm({ radioOptions = [], ...props }) {
         {
             type: "file",
             Component: ({ accept = "image/jpg" }) => (
-                <div className="inputfile">
-                    <input className="placeholder_off" accept={accept} {...props} />
-                    <FontAwesomeIcon icon={faImage} />
-                </div>
+                <label
+                    htmlFor={"inputfile-" + props.name}
+                    className="relative flex w-full cursor-pointer bg-[--c3] rounded-md "
+                >
+                    <input
+                        id={"inputfile-" + props.name}
+                        className="nostyles font-sans py-2 pl-3 text-[--c3-txt] opacity-80 w-full "
+                        accept={accept}
+                        {...props}
+                    />
+                    <div className="absolute inset-0 flex items-center gap-1 w-[164px] h-full pl-1 bg-[--c5] backdrop-blur-md rounded-tl-md rounded-bl-md font-sans text-[--c3-txt] cursor-pointer ">
+                        <FontAwesomeIcon icon={faImage} />
+                        Seleccionar archivo
+                    </div>
+                </label>
             ),
         },
         {
@@ -112,11 +126,15 @@ function InputForm({ radioOptions = [], ...props }) {
                     setShowPass(!showPass);
                 };
                 return (
-                    <div className="inputpass ">
-                        <input {...props} type={showPass ? "password" : "text"} />
+                    <div className="flex bg-[--c3] rounded-md ">
+                        <input
+                            className="nostyles flex-1 bg-transparent py-3 px-2.5 text-[--c3-txt] "
+                            {...props}
+                            type={showPass ? "password" : "text"}
+                        />
                         <button
                             type="button"
-                            className="ideabutton showpass flex justify-center items-center"
+                            className="flex justify-center items-center h-full aspect-square text-[--c3-txt2] rounded-md"
                             onClick={handleShowPass}
                         >
                             <FontAwesomeIcon icon={showPass ? faEyeSlash : faEye} />
@@ -128,10 +146,7 @@ function InputForm({ radioOptions = [], ...props }) {
         {
             type: "radio",
             Component: () => (
-                <div
-                    className="flex w-full rounded-sm overflow-hidden bg-white"
-                    style={{ border: "solid 1px rgba(0, 0, 0, 0.2)" }}
-                >
+                <div className="flex w-full rounded-md overflow-hidden bg-[--c3]">
                     {radioOptions.map(({ value, label, checked = false }) => (
                         <div className="relative flex-1" key={value}>
                             <input
@@ -141,17 +156,19 @@ function InputForm({ radioOptions = [], ...props }) {
                                 name={props.name}
                                 value={value}
                                 className={
-                                    "hidden [&:checked~div]:w-full [&:checked~label]:opacity-100 [&:checked~label]:font-bold [&:checked~label]:text-[var(--info)] "
+                                    "hidden [&:checked~div]:w-full [&:checked~label]:opacity-100 [&:checked~label]:font-bold [&:checked~label]:text-[--c3-txt2]  "
                                 }
                                 defaultChecked={checked}
                             />
-                            <div className="absolute bottom-0 left-0 right-0 m-auto w-0 h-0.5 bg-[var(--info)] transition-all duration-200" />
+                            <div className="absolute bottom-0 left-0 right-0 m-auto w-0 h-0.5 bg-[--c3-txt2] transition-all duration-200" />
                             <label
                                 htmlFor={props.name + "-" + value}
-                                className={
-                                    "cursor-pointer flex w-full h-full justify-center text-center p-1 transition-all duration-200 opacity-80 hover:opacity-100 " +
-                                    (props?.disabled ? "cursor-not-allowed opacity-40" : "")
-                                }
+                                className={cls(
+                                    "cursor-pointer flex w-full h-full justify-center text-[--c3-txt] text-center py-2.5 px-1 transition-all duration-200 opacity-80 hover:opacity-100 ",
+                                    {
+                                        "cursor-not-allowed opacity-40": props?.disabled,
+                                    }
+                                )}
                             >
                                 {label}
                             </label>

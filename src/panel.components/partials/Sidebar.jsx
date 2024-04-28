@@ -1,4 +1,15 @@
-import { faBagShopping, faCartShopping, faHome, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+    faBagShopping,
+    faCartShopping,
+    faHome,
+    faUser,
+    faUsers,
+    faBoxesStacked,
+    faTruckMoving,
+    faUsersRays,
+    faCircleDollarToSlot,
+    faCashRegister,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -51,9 +62,15 @@ export default function Sidebar() {
                 {session.role}
             </span>
             <Option name="Inicio" icon={faHome} to="./home" />
+            <Option name="Usuarios" icon={faUsers} to="./users" />
             <Option name="Perfil" icon={faUser} to="./profile" />
             <Option name="Tienda" icon={faBagShopping} to="./shop" />
             <Option name="Pedidos" icon={faCartShopping} to="./orders" />
+            <Option name="Bodegas" icon={faBoxesStacked} to="./lockers" />
+            <Option name="Proveedores" icon={faTruckMoving} to="./supliers" />
+            <Option name="Clientes" icon={faUsersRays} to="./clients" />
+            <Option name="Compras" icon={faCashRegister} to="./productBuys" />
+            <Option name="Ventas" icon={faCircleDollarToSlot} to="./productSales" />
             {/* <AdminOptions>
                 <Option name="Usuarios" icon={faUsers} to="./users" />
                 <Option name="Negocios" icon={faStore} to="./business" />
