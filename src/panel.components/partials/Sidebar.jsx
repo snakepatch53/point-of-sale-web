@@ -1,8 +1,5 @@
 import {
-    faBagShopping,
-    faCartShopping,
     faHome,
-    faUser,
     faUsers,
     faBoxesStacked,
     faTruckMoving,
@@ -63,9 +60,6 @@ export default function Sidebar() {
             </span>
             <Option name="Inicio" icon={faHome} to="./home" />
             <Option name="Usuarios" icon={faUsers} to="./users" />
-            <Option name="Perfil" icon={faUser} to="./profile" />
-            <Option name="Tienda" icon={faBagShopping} to="./shop" />
-            <Option name="Pedidos" icon={faCartShopping} to="./orders" />
             <Option name="Bodegas" icon={faBoxesStacked} to="./lockers" />
             <Option name="Proveedores" icon={faTruckMoving} to="./supliers" />
             <Option name="Clientes" icon={faUsersRays} to="./clients" />
