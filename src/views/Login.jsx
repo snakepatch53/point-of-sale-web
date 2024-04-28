@@ -21,11 +21,11 @@ export default function Login() {
                 />
                 <div className="relative z-10 flex flex-col  items-center p-10  w-full max-w-[400px] bg-black/10 rounded-sm">
                     <div className="flex flex-col justify-center items-center">
-                        <div className="w-full max-w-32 aspect-square bg-white rounded-full pb-7 pt-4">
+                        <div className="w-full max-w-32 aspect-video bg-white rounded-lg p-1">
                             <img
                                 src={info.logo_url}
                                 alt={"Logo de " + info.name}
-                                className="w-fukll h-full object-contain object-center"
+                                className="w-full h-full object-contain object-center"
                             />
                         </div>
                         <h3 className="text-[--c1-txt] text-3xl text-center font-title p-5 mb-2 text-white">
@@ -76,7 +76,7 @@ function Form() {
                         type="submit"
                         text={!progress ? "Iniciar Sesión" : ""}
                         icon={progress ? faSpinner : ""}
-                        classIcon="animate-spin text-sm"
+                        classIcon="animate-spin text-sm my-1"
                         className={cls("", {
                             "text-white/80 bg-black/30 hover:cursor-wait": progress,
                         })}
