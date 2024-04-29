@@ -118,52 +118,54 @@ function SectionSale() {
     const handleQuantityUp = (sale) => () => incrementQuantity(sale);
 
     return (
-        <div className="flex-1 flex flex-col gap-4 bg-[--c3] p-4 rounded-md border-solid border-t-2 border-t-[--c3-txt2] ">
-            <table className="text-center border-collapse" border="1">
-                <thead className="text-[--c3-txt2] uppercase ">
-                    <tr>
-                        <th className="font-sans">Producto</th>
-                        <th className="font-sans">Cantidad</th>
-                        <th className="font-sans">Precio</th>
-                        <th className="font-sans">Subtotal</th>
-                        <th className="font-sans">Acción</th>
-                    </tr>
-                </thead>
-                <tbody className=" text-[--c3-txt] ">
-                    {sales?.map((sale) => (
-                        <TableProductItem
-                            key={sale.id}
-                            name={sale.name}
-                            price={sale.price}
-                            quantity={sale.quantity}
-                            onQuantityDown={handleQuantityDown(sale)}
-                            onQuantityUp={handleQuantityUp(sale)}
-                            onRemove={handleRemoveSale(sale)}
-                        />
-                    ))}
-                    {sales?.length == 0 && (
+        <div className=" flex-1 flex flex-col gap-4 bg-[--c3] p-4 rounded-md border-solid border-t-2 border-t-[--c3-txt2] ">
+            <div className=" scroll-style overflow-x-auto ">
+                <table className="w-full text-center">
+                    <thead className="text-[--c3-txt2] uppercase ">
                         <tr>
-                            <td colSpan="5" className="font-sans opacity-80 py-4">
-                                No hay productos en la lista
-                            </td>
+                            <th className="font-sans">Producto</th>
+                            <th className="font-sans">Cantidad</th>
+                            <th className="font-sans">Precio</th>
+                            <th className="font-sans">Subtotal</th>
+                            <th className="font-sans">Acción</th>
                         </tr>
-                    )}
-                </tbody>
-                <tfoot className=" font-bold text-[--c3-txt2] uppercase ">
-                    <tr>
-                        <td colSpan="2"></td>
-                        <td className="font-sans">SUBTOTAL:</td>
-                        <td className="font-sans">${subtotal.toFixed(2)}</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colSpan="2"></td>
-                        <td className="font-sans">TAX ({info?.tax}%):</td>
-                        <td className="font-sans">${iva.toFixed(2)}</td>
-                        <td></td>
-                    </tr>
-                </tfoot>
-            </table>
+                    </thead>
+                    <tbody className=" text-[--c3-txt] ">
+                        {sales?.map((sale) => (
+                            <TableProductItem
+                                key={sale.id}
+                                name={sale.name}
+                                price={sale.price}
+                                quantity={sale.quantity}
+                                onQuantityDown={handleQuantityDown(sale)}
+                                onQuantityUp={handleQuantityUp(sale)}
+                                onRemove={handleRemoveSale(sale)}
+                            />
+                        ))}
+                        {sales?.length == 0 && (
+                            <tr>
+                                <td colSpan="5" className="font-sans opacity-80 py-4">
+                                    No hay productos en la lista
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                    <tfoot className=" font-bold text-[--c3-txt2] uppercase ">
+                        <tr>
+                            <td colSpan="2"></td>
+                            <td className="font-sans">SUBTOTAL:</td>
+                            <td className="font-sans">${subtotal.toFixed(2)}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2"></td>
+                            <td className="font-sans">TAX ({info?.tax}%):</td>
+                            <td className="font-sans">${iva.toFixed(2)}</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
             <Button
                 as="button"
                 text={"Cobrar $" + total.toFixed(2)}
@@ -174,7 +176,14 @@ function SectionSale() {
     );
 }
 
-function SectionProductItem({ src, name, mark, stock, price, onClick }) {
+function SectionProductItem({
+    src = "https://via.placeholder.com/70",
+    name = "Nombre del proyecto",
+    mark = "Marca",
+    stock = 0,
+    price = 0,
+    onClick,
+}) {
     return (
         <button
             className="flex gap-2 p-3 bg-[--c3] rounded-md cursor-pointer transition-all hover:scale-[1.03] hover:border-2 hover:border-[--c3-txt] hover:shadow-lg"
@@ -182,24 +191,24 @@ function SectionProductItem({ src, name, mark, stock, price, onClick }) {
         >
             <div className="h-20 aspect-square rounded-md ">
                 <img
-                    src={src || "https://via.placeholder.com/70"}
+                    src={src}
                     alt="Producto"
-                    className="w-full h-full object-cover rounded-md"
+                    className="w-full h-full object-cover rounded-md bg-[--c3]"
                 />
             </div>
             <div className="flex-1 flex flex-col items-start overflow-hidden ">
                 <h3 className=" block w-full max-w-full font-sans leading-5 text-left text-lg text-[--c3-txt] text-ellipsis text-nowrap overflow-hidden">
-                    {name || "Nombre del producto"}
+                    {name}
                 </h3>
                 <p className="font-sans text-[--c3-txt2] text-ellipsis leading-5 text-nowrap overflow-hidden opacity-85 ">
-                    {mark || "Categoría"}
+                    {mark}
                 </p>
                 <span className="text-[--c3-txt2] opacity-75 leading-5">
                     <b className="font-sans text-sm ">Stock: </b>
-                    {stock || 0}
+                    {stock}
                 </span>
                 <span className="font-josefin font-bold text-xl text-[--c3-txt3] opacity-75 leading-5">
-                    ${price || "0.00"}
+                    ${price}
                 </span>
             </div>
         </button>
