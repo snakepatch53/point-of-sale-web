@@ -1,29 +1,34 @@
-import { createContext, useEffect } from "react";
-// import { getInfo } from "../services/info";
-
-import information from "../mocks/info.json";
+import { createContext, useEffect, useState } from "react";
+import { getInfo } from "../services/info";
 
 export const InfoContext = createContext();
 
 export function InfoProvider({ children }) {
-    // const [info, setInfo] = useState(null);
+    const [info, setInfo] = useState({
+        name: "",
+        logo: "",
+        logo_url: "",
+        icon: "",
+        city: "",
+        address: "",
+        phone: "",
+        cellphone: "",
+        email: "",
+        tax: "",
+    });
 
     useEffect(() => {
-        // getInfo().then((data) => {
-        //     setInfo(data);
-        // });
+        getInfo().then((data) => {
+            setInfo(data);
+        });
     }, []);
 
-    // const { info: information, users, businesses, categories, products } = info || {};
+    window.title = "npi";
 
     return (
         <InfoContext.Provider
             value={{
-                info: information || null,
-                // users: users || null,
-                // businesses: businesses || null,
-                // categories: categories || null,
-                // products: products || null,
+                info: info || null,
             }}
         >
             {children}

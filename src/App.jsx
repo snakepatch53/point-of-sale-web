@@ -10,7 +10,7 @@ import { SidebarProvider } from "./contexts/sidebar";
 
 const Login = lazy(() => import("./views/Login"));
 
-function App() {
+export default function App() {
     return (
         <Suspense fallback={<Loading />}>
             <BrowserRouter>
@@ -35,5 +35,3 @@ function App() {
         </Suspense>
     );
 }
-
-export default App;

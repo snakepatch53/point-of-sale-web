@@ -1,6 +1,6 @@
 import { fetchAdapter } from "./../services/apiConfig";
 
-const resource = "info-web";
+const resource = "info";
 
 export async function getInfo() {
     const response = await fetchAdapter({
