@@ -44,7 +44,12 @@ export function CrudForm({
                                 className="bg-[--c1] "
                             />
                         )}
-                        <Button text={textCancel} icon={faBan} onClick={onClickCancel} />
+                        <Button
+                            text={textCancel}
+                            icon={faBan}
+                            onClick={onClickCancel}
+                            type="button"
+                        />
                     </div>
                 </div>
             </form>
