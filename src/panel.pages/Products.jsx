@@ -5,7 +5,8 @@ import {
     CrudTableTdImage,
     CrudTableTdText,
 } from "../panel.components/CrudTable";
-import { CrudForm, CrudFormInput } from "../panel.components/CrudForm";
+import { CrudForm } from "../panel.components/CrudForm";
+import { CrudFormInput } from "../panel.components/crud/CrudInput";
 import CrudConfirm from "../panel.components/CrudConfirm";
 import CrudProgress from "../panel.components/CrudProgress";
 import Button from "../panel.components/Button";

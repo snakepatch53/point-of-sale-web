@@ -1,6 +1,6 @@
 export default function CrudTableSkeleton({ cols = 1, actionsNum }) {
     return (
-        <tr className="relative bg-[var(--color6-bg)] rounded skeleton">
+        <tr className="relative bg-[--c3] skeleton">
             <>
                 {Array(cols)
                     .fill()
@@ -9,13 +9,12 @@ export default function CrudTableSkeleton({ cols = 1, actionsNum }) {
                             <SkeletonRounded />
                         </td>
                     ))}
-                <td className="td-action">
-                    <div className="buttons-flex">
+                <td>
+                    <div className="flex justify-center gap-1">
                         {new Array(actionsNum).fill().map((_, i) => (
-                            <SkeletonRounded key={i} className="rounded-md" />
+                            <SkeletonRounded key={i} className=" rounded-md min-w-none max-w-10 " />
                         ))}
                     </div>
-                    <div className="brigth-animation absolute inset-0" />
                 </td>
             </>
         </tr>
@@ -27,8 +26,7 @@ function SkeletonRounded({ className }) {
         <>
             <div
                 className={
-                    "flex-1 flex h-full rounded-full bg-[var(--color6-txt)] text-[var(--color6-txt)] min-w-20 " +
-                    className
+                    "flex-1 flex h-full rounded-full bg-[--c3] text-[--c3] min-w-20 " + className
                 }
             >
                 .

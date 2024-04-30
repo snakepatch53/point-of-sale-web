@@ -1,9 +1,7 @@
-import "./CrudConfirm.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "../ui/Button";
-import { faCircleXmark, faClose, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBan, faClose, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { cls } from "../../lib/utils";
+import Button from "../../components/Button";
 
 export default function CrudConfirm({ isOpen, text, onClickDelete, onClickCancel }) {
     return (
@@ -18,49 +16,19 @@ export default function CrudConfirm({ isOpen, text, onClickDelete, onClickCancel
                 if (evt.target === evt.currentTarget) onClickCancel();
             }}
         >
-            <div className="flex flex-col w-auto max-w-96 h-auto max-h-52 bg-[--c4] rounded-md  ">
-                <div className="head">
-                    <p className="msg">{text}</p>
-                    <button id="modalClose" onClick={onClickCancel}>
+            <div className="flex flex-col w-auto max-w-96 h-auto max-h-52 bg-[--c4] backdrop-blur-sm rounded-md ">
+                <div className="relative flex py-5 px-10 border-solid border-b border-b-black/20 ">
+                    <p className=" font-sans text-xl text-[--c3-txt] text-balance opacity-80 ">{text}</p>
+                    <button className=" absolute top-0 right-0 flex justify-center items-center w-8 aspect-square text-lg text-[--c3-txt] opacity-50 transition hover:opacity-100 hover:text-2xl " onClick={onClickCancel}>
                         <FontAwesomeIcon icon={faClose} />
                     </button>
                 </div>
-                <div className="foot">
-                    <Button
-                        text="Cancelar"
-                        icon={faCircleXmark}
-                        type="cancel"
-                        onClick={onClickCancel}
-                        className="bg-gray-500"
-                    />
-                    <Button text="Eliminar" icon={faTrash} type="delete" onClick={onClickDelete} />
+                <div className="flex justify-end gap-3 p-3">
+                    <Button text="Cancelar" icon={faBan} onClick={onClickCancel} />
+                    <Button text="Eliminar" icon={faTrash}  onClick={onClickDelete} className="bg-[--c1] text-[--c1-txt] " />
+
                 </div>
             </div>
         </section>
-        // <section
-        //     className={"panel-crudconfirm-component " + (isOpen ? "open" : "")}
-        //     onClick={(evt) => {
-        //         if (evt.target === evt.currentTarget) onClickCancel();
-        //     }}
-        // >
-        //     <div className="ideaconfirm">
-        //         <div className="head">
-        //             <p className="msg">{text}</p>
-        //             <button id="modalClose" onClick={onClickCancel}>
-        //                 <FontAwesomeIcon icon={faClose} />
-        //             </button>
-        //         </div>
-        //         <div className="foot">
-        //             <Button
-        //                 text="Cancelar"
-        //                 icon={faCircleXmark}
-        //                 type="cancel"
-        //                 onClick={onClickCancel}
-        //                 className="bg-gray-500"
-        //             />
-        //             <Button text="Eliminar" icon={faTrash} type="delete" onClick={onClickDelete} />
-        //         </div>
-        //     </div>
-        // </section>
     );
 }

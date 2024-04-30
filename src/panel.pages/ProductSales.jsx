@@ -1,6 +1,7 @@
 import CrudHead from "../panel.components/crud/CrudHead";
 import { CrudTable, CrudTableTdFlex, CrudTableTdText } from "../panel.components/crud/CrudTable";
-import { CrudForm, CrudFormInput } from "../panel.components/crud/CrudForm";
+import { CrudForm } from "../panel.components/crud/CrudForm";
+import { CrudFormInput } from "../panel.components/crud/CrudInput";
 import CrudConfirm from "../panel.components/crud/CrudConfirm";
 import CrudProgress from "../panel.components/crud/CrudProgress";
 import { faPen, faTrash, faUsers } from "@fortawesome/free-solid-svg-icons";

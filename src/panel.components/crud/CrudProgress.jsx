@@ -13,7 +13,7 @@ export default function CrudProgress({ isOpen }) {
         >
             <div className="relative flex justify-center items-center w-full h-full">
                 <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
-                <div className="relative z-10  w-full h-full max-w-72 max-h-44 bg-white/80 rounded-md">
+                <div className="relative z-10  w-full h-full max-w-72 max-h-52 rounded-md">
                     <Loading classWrapper="h-full" />
                 </div>
             </div>

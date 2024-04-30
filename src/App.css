@@ -12,6 +12,14 @@ body {
     background-image: var(--gd1);
 }
 
+.rnc__notification-container--bottom-right .rnc__notification-item--success,
+.rnc__notification-container--bottom-right .rnc__notification-item--danger,
+.rnc__notification-container--bottom-right .rnc__notification-item--info,
+.rnc__notification-container--bottom-right .rnc__notification-item--warning {
+    background: var(--c3);
+    backdrop-filter: blur(10px);
+}
+
 /* _____________ SCROLL _ STYLES ________________ */
 .scroll-style {
     scroll-behavior: smooth;

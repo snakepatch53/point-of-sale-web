@@ -5,16 +5,16 @@ import {
     CrudTableTdImage,
     CrudTableTdText,
 } from "../panel.components/crud/CrudTable";
-import { CrudForm, CrudFormInput } from "../panel.components/crud/CrudForm";
+import { CrudForm } from "../panel.components/crud/CrudForm";
 import CrudConfirm from "../panel.components/crud/CrudConfirm";
 import CrudProgress from "../panel.components/crud/CrudProgress";
-// import Button from "../panel.components/ui/Button";
 import { faPen, faTrash, faUsers } from "@fortawesome/free-solid-svg-icons";
 import "react-notifications-component/dist/theme.css";
 import { destroyUser, getUsers, storageUser, updateUser } from "../services/users";
 import useCrudPanel from "../hooks/useCrudPanel";
 import PageContent from "../components/PageContent";
 import Button from "../components/Button";
+import { CrudFormInput } from "../panel.components/crud/CrudInput";
 
 export default function Users() {
     const extraValidations = ($form, showNotification, { isEmail }) => {
