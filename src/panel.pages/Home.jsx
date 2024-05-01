@@ -1,9 +1,9 @@
-import PageContent from "../components/PageContent";
-import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
-import Button from "../components/Button";
 import { useContext, useEffect, useState } from "react";
-import { SalesDashboardContext, SalesDashboardProvider } from "../contexts/sales-dashboard";
 import { InfoContext } from "../contexts/info";
+import { SalesDashboardContext, SalesDashboardProvider } from "../contexts/sales-dashboard";
+import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import PageContent from "../components/PageContent";
+import Button from "../components/Button";
 import Search from "../panel.components/ui/Search";
 
 export default function Home() {
@@ -64,22 +64,11 @@ function SectionProducts() {
 }
 
 function SectionClient() {
-    const { clients } = useContext(SalesDashboardContext);
-    const [selectedClient, setSelectedClient] = useState(null);
+    const { searchClient, selectedClient } = useContext(SalesDashboardContext);
 
     const handleSearch = (e) => {
         const value = e.target.value.toString().toLowerCase();
-        if (!value) return setSelectedClient(null);
-        const client = clients?.find(
-            (client) =>
-                client?.name?.toString()?.toLowerCase()?.includes(value) ||
-                client?.name1?.toString()?.toLowerCase()?.includes(value) ||
-                client?.lastname?.toString()?.toLowerCase()?.includes(value) ||
-                client?.lastname2?.toString()?.toLowerCase()?.includes(value) ||
-                client?.dni?.includes(value)
-        );
-        if (!client) return setSelectedClient(null);
-        setSelectedClient(client);
+        searchClient(value);
     };
 
     return (
@@ -106,7 +95,7 @@ function SectionClient() {
 }
 
 function SectionSale() {
-    const { sales, removeSale, incrementQuantity, decrementQuantity } =
+    const { sales, removeSale, incrementQuantity, decrementQuantity, sale } =
         useContext(SalesDashboardContext);
     const { info } = useContext(InfoContext);
     const subtotal = sales?.reduce((acc, sale) => acc + sale.price * sale.quantity, 0);
@@ -171,6 +160,7 @@ function SectionSale() {
                 text={"Cobrar $" + total.toFixed(2)}
                 className="gap-0 bg-[--c1] text-[--c1-txt] "
                 classText="font-sans text-md"
+                onClick={sale}
             />
         </div>
     );

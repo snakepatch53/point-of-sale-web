@@ -1,20 +1,59 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { getProducts } from "../services/products";
 import { getClients } from "../services/clients";
 import { showNotification } from "../components/Notification";
+import { SessionContext } from "./session";
+import { InfoContext } from "./info";
+import { bulkSale } from "../services/combo";
 
 export const SalesDashboardContext = createContext();
 
 export function SalesDashboardProvider({ children }) {
+    const { session } = useContext(SessionContext);
+    const { info } = useContext(InfoContext);
     const [products, setProducts] = useState(null);
     const [clients, setClients] = useState(null);
-
+    const [selectedClient, setSelectedClient] = useState(null);
     const [sales, setSales] = useState([]);
 
     useEffect(() => {
         getProducts().then((res) => setProducts(res));
         getClients().then((res) => setClients(res));
     }, []);
+
+    const searchClient = (value) => {
+        if (!value) return setSelectedClient(null);
+        const client = clients?.find(
+            (client) =>
+                client?.name?.toString()?.toLowerCase()?.includes(value) ||
+                client?.name1?.toString()?.toLowerCase()?.includes(value) ||
+                client?.lastname?.toString()?.toLowerCase()?.includes(value) ||
+                client?.lastname2?.toString()?.toLowerCase()?.includes(value) ||
+                client?.dni?.includes(value)
+        );
+        if (!client) return setSelectedClient(null);
+        setSelectedClient(client);
+    };
+
+    const sale = () => {
+        if (sales.length <= 0)
+            return showNotification({
+                title: "Cancelado",
+                message: "No hay productos para vender",
+                type: "warning",
+            });
+
+        const data = {
+            iva: info.tax,
+            client_id: selectedClient?.id || 0,
+            user_id: session.id,
+            products: sales,
+        };
+
+        bulkSale({ data }).then((res) => {
+            console.log(res);
+        });
+    };
 
     const addSale = (product) => {
         const isAlreadyInSales = sales?.some((sale) => sale.id === product.id);
@@ -117,12 +156,14 @@ export function SalesDashboardProvider({ children }) {
         <SalesDashboardContext.Provider
             value={{
                 products,
-                clients,
+                selectedClient,
                 sales,
                 addSale,
                 removeSale,
                 incrementQuantity,
                 decrementQuantity,
+                sale,
+                searchClient,
             }}
         >
             {children}
