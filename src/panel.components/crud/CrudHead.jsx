@@ -46,7 +46,7 @@ export default function CrudHead({
                 />
             )}
             {rightButtonComponent && (
-                <div className="w-full flex justify-end">
+                <div className="flex justify-end">
                     <div className="w-full lg:w-24">{rightButtonComponent}</div>
                 </div>
             )}

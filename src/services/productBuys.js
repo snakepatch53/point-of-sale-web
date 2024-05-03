@@ -10,7 +10,7 @@ function mapNames(data) {
 
 export async function getProductBuys() {
     const response = await fetchAdapter({
-        resource,
+        resource: resource + "?includeSuplier=true",
         // printResponse: true,
     });
     return mapNames(response);

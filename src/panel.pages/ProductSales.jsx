@@ -4,7 +4,7 @@ import { CrudForm } from "../panel.components/crud/CrudForm";
 import { CrudFormInput } from "../panel.components/crud/CrudInput";
 import CrudConfirm from "../panel.components/crud/CrudConfirm";
 import CrudProgress from "../panel.components/crud/CrudProgress";
-import { faPen, faTrash, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faFilePdf, faUsers } from "@fortawesome/free-solid-svg-icons";
 import "react-notifications-component/dist/theme.css";
 import {
     destroyProductSale,
@@ -28,7 +28,6 @@ export default function ProductSales() {
         datalist,
         $form,
         handleModeNew,
-        handleModeEdit,
         handleModeDelete,
         hanleCancel,
         handleSubmit,
@@ -52,25 +51,21 @@ export default function ProductSales() {
                 isOpen={head}
                 onClickNew={handleModeNew}
                 handleSearch={handleSearch}
+                rightButtonComponent={true}
             />
 
             <CrudTable
-                titles={["Fecha", "Iva"]}
+                titles={["Fecha", "Cliente", "Total"]}
                 dataList={datalist}
                 isOpen={table}
                 onRowPrint={(item) => (
                     <tr key={item.id}>
-                        <CrudTableTdText value={item.date} />
-                        <CrudTableTdText value={item.iva} />
+                        <CrudTableTdText value={item.date_str} />
+                        <CrudTableTdText value={item?.client?.name} />
+                        <CrudTableTdText value={"$" + item.total} />
                         <CrudTableTdFlex>
                             <Button
-                                icon={faPen}
-                                type="edit"
-                                onClick={() => handleModeEdit(item)}
-                                classIcon="text-[--c3-txt2]"
-                            />
-                            <Button
-                                icon={faTrash}
+                                icon={faFilePdf}
                                 type="delete"
                                 onClick={() => handleModeDelete(item)}
                                 classIcon="text-[--c3-txt2]"
@@ -94,7 +89,7 @@ export default function ProductSales() {
                     name="date"
                     required
                 />
-                <CrudFormInput label="Iva" placeholder="Escriba el iva  " name="iva" required />
+                <CrudFormInput label="Iva" placeholder="Escriba el iva  " name="tax" required />
             </CrudForm>
 
             <CrudConfirm

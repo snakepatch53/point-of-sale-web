@@ -4,7 +4,7 @@ import { CrudForm } from "../panel.components/crud/CrudForm";
 import { CrudFormInput } from "../panel.components/crud/CrudInput";
 import CrudConfirm from "../panel.components/crud/CrudConfirm";
 import CrudProgress from "../panel.components/crud/CrudProgress";
-import { faPen, faTrash, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faFilePdf, faUsers } from "@fortawesome/free-solid-svg-icons";
 import "react-notifications-component/dist/theme.css";
 import {
     destroyProductBuy,
@@ -31,7 +31,6 @@ export default function ProductBuys() {
         datalist,
         $form,
         handleModeNew,
-        handleModeEdit,
         handleModeDelete,
         hanleCancel,
         handleSubmit,
@@ -66,22 +65,17 @@ export default function ProductBuys() {
             />
 
             <CrudTable
-                titles={["Fecha", "Iva"]}
+                titles={["Fecha", "Proveedor", "Total"]}
                 dataList={datalist}
                 isOpen={table}
                 onRowPrint={(item) => (
                     <tr key={item.id}>
-                        <CrudTableTdText value={item.date_buy} />
-                        <CrudTableTdText value={item.iva_buy} />
+                        <CrudTableTdText value={item.date_str} />
+                        <CrudTableTdText value={item?.suplier?.name} />
+                        <CrudTableTdText value={"$" + item.total} />
                         <CrudTableTdFlex>
                             <Button
-                                icon={faPen}
-                                type="edit"
-                                onClick={() => handleModeEdit(item)}
-                                classIcon="text-[--c3-txt2]"
-                            />
-                            <Button
-                                icon={faTrash}
+                                icon={faFilePdf}
                                 type="delete"
                                 onClick={() => handleModeDelete(item)}
                                 classIcon="text-[--c3-txt2]"
@@ -100,7 +94,7 @@ export default function ProductBuys() {
                 formRef={$form}
             >
                 <CrudFormInput label="Fecha de venta" type="date" name="date_buy" required />
-                <CrudFormInput label="Iva" placeholder="Escriba el iva  " name="iva_buy" required />
+                <CrudFormInput label="Iva" placeholder="Escriba el iva  " name="tax" required />
                 <CrudFormInput label="Proveedor" name="suplier_id" type="select" required>
                     <option value="">Seleccione un proveedor</option>
                     {supliers.map((suplier) => (
