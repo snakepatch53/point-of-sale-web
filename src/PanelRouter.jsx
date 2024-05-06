@@ -10,7 +10,6 @@ import CrudProgress from "./panel.components/crud/CrudProgress";
 
 const Home = lazy(() => import("./panel.pages/Home"));
 const Users = lazy(() => import("./panel.pages/Users"));
-const Profile = lazy(() => import("./panel.pages/Profile"));
 const Lockers = lazy(() => import("./panel.pages/Lockers"));
 const Supliers = lazy(() => import("./panel.pages/Suppliers"));
 const Clients = lazy(() => import("./panel.pages/Clients"));
@@ -33,7 +32,6 @@ export default function PanelRouter() {
                                 <Route path="/" element={<Home />} />
                                 <Route path="/home" element={<Home />} />
                                 <Route path="/users" element={<Users />} />
-                                <Route path="/profile" element={<Profile />} />
                                 <Route path="/lockers" element={<Lockers />} />
                                 <Route path="/supliers" element={<Supliers />} />
                                 <Route path="/clients" element={<Clients />} />
