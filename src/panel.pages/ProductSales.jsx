@@ -4,7 +4,7 @@ import { CrudForm } from "../panel.components/crud/CrudForm";
 import { CrudFormInput } from "../panel.components/crud/CrudInput";
 import CrudConfirm from "../panel.components/crud/CrudConfirm";
 import CrudProgress from "../panel.components/crud/CrudProgress";
-import { faFilePdf, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faBan, faFilePdf, faUsers } from "@fortawesome/free-solid-svg-icons";
 import "react-notifications-component/dist/theme.css";
 import {
     destroyProductSale,
@@ -66,8 +66,12 @@ export default function ProductSales() {
                         <CrudTableTdFlex>
                             <Button
                                 icon={faFilePdf}
-                                type="delete"
                                 onClick={() => handleModeDelete(item)}
+                                classIcon="text-[--c3-txt2]"
+                            />
+                            <Button
+                                icon={faBan}
+                                // onClick={() => handleModeDelete(item)}
                                 classIcon="text-[--c3-txt2]"
                             />
                         </CrudTableTdFlex>
