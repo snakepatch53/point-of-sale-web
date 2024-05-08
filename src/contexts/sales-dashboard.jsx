@@ -3,21 +3,24 @@ import { getProducts } from "../services/products";
 import { getClients } from "../services/clients";
 import { showNotification } from "../components/Notification";
 import { SessionContext } from "./session";
-import { InfoContext } from "./info";
+import { EntityContext } from "./entity";
 import { bulkSale } from "../services/combo";
 
 export const SalesDashboardContext = createContext();
 
 export function SalesDashboardProvider({ children }) {
     const { session } = useContext(SessionContext);
-    const { info } = useContext(InfoContext);
+    const { entity } = useContext(EntityContext);
     const [products, setProducts] = useState(null);
     const [clients, setClients] = useState(null);
     const [selectedClient, setSelectedClient] = useState(null);
     const [sales, setSales] = useState([]);
 
     useEffect(() => {
-        getProducts().then((res) => setProducts(res));
+        getProducts().then((res) => {
+            // setProducts(res);
+            setProducts(res.filter((product) => product.stock > 0));
+        });
         getClients().then((res) => setClients(res));
     }, []);
 
@@ -44,7 +47,7 @@ export function SalesDashboardProvider({ children }) {
             });
 
         const data = {
-            iva: info.tax,
+            iva: entity.tax,
             client_id: selectedClient?.id || 0,
             user_id: session.id,
             products: sales,

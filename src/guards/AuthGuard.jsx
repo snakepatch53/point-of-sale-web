@@ -7,5 +7,5 @@ export default function AuthGuard() {
     const { session } = useContext(SessionContext);
     if (session == null) return <Loading />;
     if (session?.id) return <Outlet />;
-    return <Navigate replace to="/login" />;
+    return <Navigate replace to="./login" />;
 }

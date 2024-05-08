@@ -13,7 +13,6 @@ export async function fetchAdapter({
     all = false,
     formData = false,
 }) {
-    console.log(_API_URL + resource);
     const session = JSON.parse(localStorage.getItem("session"));
     const sessionToken = session?.token;
 

@@ -1,5 +1,6 @@
 :root {
     --gd1: linear-gradient(to right, #131b20, #122735, #122735, #122735, #131b20);
+    --gd1-txt: #fff;
 
     --c1: #0074b3;
     --c1-txt: #fff;

@@ -7,5 +7,5 @@ export default function SessionOutGuard() {
     const { session } = useContext(SessionContext);
     if (session == null) return <Loading />;
     if (!session?.id) return <Outlet />;
-    return <Navigate replace to="/home" />;
+    return <Navigate replace to="./home" />;
 }

@@ -16,25 +16,25 @@ export async function getProducts() {
     return mapNames(response);
 }
 
-export async function getProductsWithCategory() {
-    const response = await fetchAdapter({
-        resource: resource + "?includeCategory=true",
-        // printResponse: true,
-    });
-    return mapNames(response);
-}
+// export async function getProductsWithCategory() {
+//     const response = await fetchAdapter({
+//         resource: resource + "?includeCategory=true",
+//         // printResponse: true,
+//     });
+//     return mapNames(response);
+// }
 
-export async function getProductsWithCategoryAndBusiness() {
-    const response = await fetchAdapter({
-        resource: resource + "?includeCategory=true&includeBusiness=true",
-        // printResponse: true,
-    });
-    return mapNames(response);
-}
+// export async function getProductsWithCategoryAndBusiness() {
+//     const response = await fetchAdapter({
+//         resource: resource + "?includeCategory=true&includeBusiness=true",
+//         // printResponse: true,
+//     });
+//     return mapNames(response);
+// }
 
 export async function storageProduct({ data }) {
     const response = await fetchAdapter({
-        resource: resource + "?includeCategory=true",
+        resource,
         data,
         method: "POST",
         all: true,
@@ -45,7 +45,7 @@ export async function storageProduct({ data }) {
 
 export async function updateProduct({ id, data }) {
     const response = await fetchAdapter({
-        resource: resource + "/" + id + "?includeCategory=true",
+        resource: resource + "/" + id,
         data,
         method: "POST",
         all: true,

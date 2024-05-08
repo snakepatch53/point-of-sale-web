@@ -1,14 +1,15 @@
-import { Suspense, lazy } from "react";
+import { Suspense } from "react";
 import "./App.css";
 import Loading from "./components/Loading";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Notification } from "./components/Notification";
-import AuthGuard from "./guards/AuthGuard";
-import SessionOutGuard from "./guards/SessionOutGuard";
-import PanelRouter from "./PanelRouter";
-import { SidebarProvider } from "./contexts/sidebar";
+// import AuthGuard from "./guards/AuthGuard";
+// import SessionOutGuard from "./guards/SessionOutGuard";
+import Home from "./views/Home";
+import ClientApp from "./ClientApp";
+// import { SidebarProvider } from "./contexts/sidebar";
 
-const Login = lazy(() => import("./views/Login"));
+// const Login = lazy(() => import("./views/Login"));
 
 export default function App() {
     return (
@@ -16,11 +17,11 @@ export default function App() {
             <BrowserRouter>
                 <Notification />
                 <Routes>
-                    <Route element={<SessionOutGuard />}>
-                        <Route path="/" element={<Login />} />
-                        <Route path="/login" element={<Login />} />
-                    </Route>
-                    <Route element={<AuthGuard />}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/:entityName/*" element={<ClientApp />} />
+
+                    {/* <Route element={<AuthGuard />}>
                         <Route
                             path="/*"
                             element={
@@ -29,7 +30,7 @@ export default function App() {
                                 </SidebarProvider>
                             }
                         />
-                    </Route>
+                    </Route> */}
                 </Routes>
             </BrowserRouter>
         </Suspense>
